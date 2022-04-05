@@ -1,22 +1,13 @@
-<?php require_once('../../private/initialize.php'); 
-/* ------------------------------------------------------------------
-Your code here
+<?php require_once('../../private/initialize.php');?> 
 
-1.)
-Create a varaible called $id and use the null coalescing operator 
-Here is the pseudo-code
-IF GET['id'] is null 
-THEN assign it the value 1
-
-Hint: The line starts with $id=
------------------------------------------------------------------- */
+<?php
 
 $id = $_GET['id'] ?? '1';
-
 $page_title = 'Salamander Details';
-include(SHARED_PATH . '../../private/shared/salamander-header.php'); 
-
 ?>
+
+<?php include(SHARED_PATH . '/salamander-header.php'); ?>
+
 
 <h2>Salamander Details</h2>
 <?php echo h($id); ?>
