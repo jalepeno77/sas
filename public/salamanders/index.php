@@ -19,7 +19,7 @@
     <h1>Salamanders</h1>
 
     <div class="actions">
-      <a href="#">Create Salamander</a>
+      <a href="<?php echo url_for('/salamanders/new.php') ?>">Create Salamander</a>
     </div>
 
 <table>
@@ -36,7 +36,8 @@
           <td><?php echo h($salamander['id']); ?></td>
     	    <td><?php echo h($salamander['salamanderName']); ?></td>
           <td><a class="action" href="<?= url_for('salamanders/show.php?id=' . h(u($salamander['id']))); ?>">View</a></td>
-          <td><a class="action" href="">Edit</a></td>
+          <td><a class="action" href="<?php echo url_for('/salamanders/edit.php?id=' . h(u($salamander['id'])));
+          ?>">Edit</a></td>
           <td><a class="action" href="">Delete</a></td>
     	  </tr>
       <?php } ?>

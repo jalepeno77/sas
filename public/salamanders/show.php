@@ -1,33 +1,18 @@
 <?php require_once('../../private/initialize.php');?> 
 
 <?php
-
 $id = $_GET['id'] ?? '1';
 $page_title = 'Salamander Details';
 ?>
 
 <?php include(SHARED_PATH . '/salamander-header.php'); ?>
 
+<div id="content">
 
-<h2>Salamander Details</h2>
-<?php echo h($id); ?>
-<!------------------------------------------------------------------ 
-1.
-Display <p>Page ID: </p>
-Replace the ... with PHP short tags and use h function found in the
-functions folder. It is a shortcut the author created to represent 
-the PHP functions htmlentities. Pass the $id to the h function.
+  <h2>Salamander Details</h2>
+  <?php echo h($id); ?>
 
-Hint: h()
-
-2.
-This one is a little harder
-Create a link that does the following
-* Use the url_for function and pass it salamanders/index.php
-* Add the &laquo; entity. 
-* Make the link text "Back to Salamander List"
-* Surround it with <p> tags to give it a little space
------------------------------------------------------------------->
-<p><a href="<?php echo url_for('salamanders/index.php?id=' . $salamander['id']);?>">&laquo;Back to Salamander List</a></p>
+  <p><a href="<?php echo url_for('salamanders/index.php?id=' . $salamander['id']);?>">&laquo;Back to Salamander List</a></p>
+</div>
 
 <?php include(SHARED_PATH . '/salamander-footer.php'); ?>
