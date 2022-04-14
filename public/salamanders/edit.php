@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../private/initialize.php');
+include(SHARED_PATH . '/salamander-header.php');
 
 if(!isset($_GET['id'])) {
   redirect_to(url_for('/salamanders/index.php'));
@@ -15,14 +16,14 @@ if(is_post_request()) {
 
 // Handle form values sent by new.php
 
-$menu_name = $_POST['menu_name'] ?? '';
-$position = $_POST['position'] ?? '';
-$visible = $_POST['visible'] ?? '';
+$menu_name = $_POST['name'] ?? '';
+$habitat = $_POST['habitat'] ?? '';
+$description = $_POST['description'] ?? '';
 
 echo "Form parameters<br />";
-echo "Menu name: " . $menu_name . "<br />";
-echo "Position: " . $position . "<br />";
-echo "Visible: " . $visible . "<br />";
+echo "Salamander name: " . $name . "<br />";
+echo "Habitat: " . $habitat . "<br />";
+echo "Description: " . $description . "<br />";
 }
 
 ?>
@@ -34,31 +35,28 @@ echo "Visible: " . $visible . "<br />";
 
   <a class="back-link" href="<?php echo url_for('/salamanders/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="page edit">
-    <h1>Edit Page</h1>
+  <div id="content">
 
-    <form action="<?php echo url_for('/salamanders/edit.php?id=' . h(u($id))); ?>" method="post">
-      <dl>
-        <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo h($menu_name); ?>" /></dd>
-      </dl>
-      <dl>
-        <dt>Position</dt>
-        <dd>
-          <select name="position">
-            <option value="1"<?php if($position == "1") { echo " selected"; } ?>>1</option>
-          </select>
-        </dd>
-      </dl>
-      <dl>
-        <dt>Visible</dt>
-        <dd>
-          <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1"<?php if($visible == "1") { echo " checked"; } ?> />
-        </dd>
-      </dl>
-      <div id="operations">
-        <input type="submit" value="Edit Page" />
+  <a class="back-link" href="<?php echo url_for('/salamanders/index.php'); ?>">&laquo; Back to List</a>
+
+  <div class="salamanders new">
+    <h1>Create Salamander</h1>
+
+    <form action="<?php echo url_for('/salamanders/create.php'); ?>" method="post">
+
+    <label for="name">Name</label><input type="text" name="name" id="name">
+
+    <h2>Choose a Habitat</h2>
+				<select id="habitat">
+					<option value="river">River</option>
+					<option value="creek">Creek</option>
+					<option value="forrest">Forrest</option>
+				</select>
+
+    <h2>Description</h2>
+				<textarea name="description" rows="3" placeholder="Please let us know what special features your salamander might have"></textarea>
+				<br>
+        <input type="submit" value="Edit Salamander">
       </div>
     </form>
 

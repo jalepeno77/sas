@@ -1,50 +1,40 @@
-<?php require_once('../../private/initialize.php'); ?>
+<?php 
 
-<?php
-  $salamanders = [
-  ['id' => '1', 'salamanderName' => 'Red-Legged Salamander'], 
-  ['id' => '2', 'salamanderName' => 'Pigeon Mountain Salamander'],
-  ['id' => '3', 'salamanderName' => 'ZigZag Salamander'], 
-  ['id' => '4', 'salamanderName' => 'Slimy Salamander']
-  ];
+require_once('../../private/initialize.php');
+
+$salamander_set = find_all_salamanders(); 
+$page_title = 'Salamanders';
+include(SHARED_PATH . '/salamander-header.php'); 
+
 ?>
-
-<?php $page_title = 'Salamanders'; ?>
-<?php require_once(SHARED_PATH . '/salamander-header.php');
-?>
-
-
-<div id="content">
-  <div class="salamanders listing">
     <h1>Salamanders</h1>
-
-    <div class="actions">
-      <a href="<?php echo url_for('/salamanders/new.php') ?>">Create Salamander</a>
-    </div>
-
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-  </tr>
-
-      <?php foreach($salamanders as $salamander) { ?>
+    
+    <a href="<?= url_for('salamanders/create.php'); ?>">Create Salamander</a>
+    
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Habitat</th>
+  	    <th>Desc</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+  	  </tr>
+      
+      <?php while($salamander = mysqli_fetch_assoc($salamander_set)) { ?>
         <tr>
-          <td><?php echo h($salamander['id']); ?></td>
-    	    <td><?php echo h($salamander['salamanderName']); ?></td>
-          <td><a class="action" href="<?= url_for('salamanders/show.php?id=' . h(u($salamander['id']))); ?>">View</a></td>
-          <td><a class="action" href="<?php echo url_for('/salamanders/edit.php?id=' . h(u($salamander['id'])));
-          ?>">Edit</a></td>
-          <td><a class="action" href="">Delete</a></td>
+          <td><?= h($salamander['id']); ?></td>
+          <td><?= h($salamander['name']); ?></td>
+          <td><?= h($salamander['habitat']); ?></td>
+          <td><?= h($salamander['description']); ?></td>
+          <td><a href="<?= url_for('salamanders/show.php?id=' . h(u($salamander['id']))); ?>">View</a></td>
+          <td><a href="<?= url_for('salamanders/edit.php?id=' . h(u($salamander['id']))); ?>">Edit</a></td>
+          <td><a href="<?= url_for('salamanders/delete.php?id=' . h(u($salamander['id']))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>
-
-  </div>
-
-</div>
+  <?php mysqli_free_result($salamander_set); ?>
+  Thanks to <a href="https://herpsofnc.org">Ampibians and Reptiles of North Carolina</a>
 
 <?php include(SHARED_PATH . '/salamander-footer.php'); ?>

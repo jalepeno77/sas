@@ -1,1 +1,1 @@
-<?php header('Location: https://github.com/jalepeno77/sas'); ?>
+<?php header('Location: public/index.php'); ?>
