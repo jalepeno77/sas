@@ -3,66 +3,52 @@
 require_once('../../private/initialize.php');
 include(SHARED_PATH . '/salamander-header.php');
 
-if(!isset($_GET['id'])) {
-  redirect_to(url_for('/salamanders/index.php'));
-}
-
+$pageTitle = 'Edit Salamander';
 $id = $_GET['id'];
-$menu_name = '';
-$position = '';
-$visible = '';
 
+$salamander = find_salamander_by_id($id);
 if(is_post_request()) {
-
-// Handle form values sent by new.php
-
-$menu_name = $_POST['name'] ?? '';
-$habitat = $_POST['habitat'] ?? '';
-$description = $_POST['description'] ?? '';
-
-echo "Form parameters<br />";
-echo "Salamander name: " . $name . "<br />";
-echo "Habitat: " . $habitat . "<br />";
-echo "Description: " . $description . "<br />";
+  $salamander = [];
+  $salamander($id) = $id;
+  $salamander($name) = $_POST['name'] ?? '';
+  $salamander($habitat) = $_POST['habitat'] ?? '';
+  $salamander($description) = $_POST['description'] ?? '';
+  update_salamander($salamander);
+  redirect_to(url_for('salamanders/show.php?id=' . $id));
+}
+else {
+  $salamander = find_salamander_by-id($id);
 }
 
 ?>
 
-<?php $page_title = 'Edit Salamander'; ?>
-<?php include(SHARED_PATH . '/salamander-header.php'); ?>
+<form action="<?php echo url_for('/salamanders/edit.php?id=' . h(u($id))); ?>" method="post">
 
-<div id="content">
+    <label for="name">
+      <p>Name: <br><input type="text" name="name" value=""></p>
+    </label>
 
-  <a class="back-link" href="<?php echo url_for('/salamanders/index.php'); ?>">&laquo; Back to List</a>
+    <label for="Habitat">
+      <p>Habitat: <br>
+        <textarea rows="4" cols="50" name="habitat" value="">
+          <?= h($salamander['habitat']); ?>
+        </textarea>
+      </p>
+    </label>
 
-  <div id="content">
+    <label for="Description">
+      <p>Description: <br>
+        <textarea rows="4" cols="50" name="description" value="">
+        <?= h($salamander['description']); ?>
+        </textarea>
+      </p>
+    </label>
 
-  <a class="back-link" href="<?php echo url_for('/salamanders/index.php'); ?>">&laquo; Back to List</a>
+    <label for="submit">
+      <p><input type="submit" value="Edit Salamander"></p>
+    </label>
 
-  <div class="salamanders new">
-    <h1>Create Salamander</h1>
-
-    <form action="<?php echo url_for('/salamanders/create.php'); ?>" method="post">
-
-    <label for="name">Name</label><input type="text" name="name" id="name">
-
-    <h2>Choose a Habitat</h2>
-				<select id="habitat">
-					<option value="river">River</option>
-					<option value="creek">Creek</option>
-					<option value="forrest">Forrest</option>
-				</select>
-
-    <h2>Description</h2>
-				<textarea name="description" rows="3" placeholder="Please let us know what special features your salamander might have"></textarea>
-				<br>
-        <input type="submit" value="Edit Salamander">
-      </div>
-    </form>
-
-  </div>
-
-</div>
+</form>
 
 <?php include(SHARED_PATH . '/salamander-footer.php'); ?>
 

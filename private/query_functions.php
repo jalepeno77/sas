@@ -19,8 +19,16 @@
     $sql .="'" . $salamander['name'] . "',";
     $sql .="'" . $salamander['habitat'] . "',";
     $sql .="'" . $salamander['description'] . "'";
-    db_disconnect($db);
-     exit;
+    $result = mysqli_query($db, $sql);
+
+    if($result) {
+      return true;
+    }
+    else {
+      echo mysqli_error($db);
+      db_disconnect($db);
+      exit;
+    }
   }
 
   function update_salamander($salamander) {
