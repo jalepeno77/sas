@@ -3,8 +3,6 @@
 require_once('../../private/initialize.php');
 include(SHARED_PATH . '/salamander-header.php');
 
-$pageTitle = 'Create Salamander';
-
 if(is_post_request()) {
   $salamander = [];
   $salamander['name'] = $_POST['name'] ?? '';
@@ -19,4 +17,3 @@ if(is_post_request()) {
 include(SHARED_PATH . '/salamander-footer.php');
 
 ?>
-

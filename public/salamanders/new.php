@@ -8,7 +8,7 @@ include(SHARED_PATH . '/salamander-header.php');
   <a href="<?php echo url_for('salamanders/index.php'); ?>">&laquo Back to Salamanders</a>
     <h1>Create Salamander</h1>
 
-    <form action="<?php echo url_for('/salamanders/create.php'); ?>" method="post">
+    <form action="<?php echo url_for('salamanders/create.php'); ?>" method="post">
 
     <label for="name">
       <p>Name: <br><input type="text" name="name" value=""></p>
@@ -31,3 +31,5 @@ include(SHARED_PATH . '/salamander-header.php');
     </label>
 
 </form>
+
+<?php include(SHARED_PATH . '/salamander-footer.php'); ?>

@@ -17,7 +17,7 @@ if(is_post_request()) {
   redirect_to(url_for('salamanders/show.php?id=' . $id));
 }
 else {
-  $salamander = find_salamander_by-id($id);
+  $salamander = find_salamander_by_id($id);
 }
 
 ?>
@@ -25,12 +25,12 @@ else {
 <form action="<?php echo url_for('/salamanders/edit.php?id=' . h(u($id))); ?>" method="post">
 
     <label for="name">
-      <p>Name: <br><input type="text" name="name" value=""></p>
+      <p>Name:<br> <input type="text" name="name" value="<?= h($salamander['name']); ?>"></p>
     </label>
 
     <label for="Habitat">
       <p>Habitat: <br>
-        <textarea rows="4" cols="50" name="habitat" value="">
+        <textarea rows="4" cols="50" name="habitat">
           <?= h($salamander['habitat']); ?>
         </textarea>
       </p>

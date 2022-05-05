@@ -1,18 +1,17 @@
-<?php require_once('../../private/initialize.php');?> 
+<?php require_once('../../private/initialize.php'); 
 
-<?php
-$id = $_GET['id'] ?? '1';
 $page_title = 'Salamander Details';
+include(SHARED_PATH . '/salamander-header.php'); 
+$id = $_GET['id'] ?? '1'; 
+$salamander = find_salamander_by_id($id);
 ?>
 
-<?php include(SHARED_PATH . '/salamander-header.php'); ?>
+<h2>Salamander Details</h2>
+<p><strong>ID:</strong><?= h($salamander['id']); ?></p>
+<p><strong>Name:</strong><?= h($salamander['name']); ?></p>
+<p><strong>Habitat:</strong><br> <?= h($salamander['habitat']); ?> </p>
+<p><strong>Description:</strong><br> <?= h($salamander['description']); ?></p>
 
-<div id="content">
-
-  <h2>Salamander Details</h2>
-  <?php echo h($id); ?>
-
-  <p><a href="<?php echo url_for('salamanders/index.php?id=' . $salamander['id']);?>">&laquo;Back to Salamander List</a></p>
-</div>
+<p><a href="<?= url_for('/salamanders/index.php'); ?>">&laquo; Back to Salamander List</a></p>
 
 <?php include(SHARED_PATH . '/salamander-footer.php'); ?>
