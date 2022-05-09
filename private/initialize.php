@@ -9,9 +9,9 @@
   define("PUBLIC_PATH", PROJECT_PATH . '/public');
   define("SHARED_PATH", PRIVATE_PATH . '/shared');
 
-  header("Cache-Control: no-cache, nop-store, must-revalidate");
-  header("Pragma: no-cache");
-  header("Expires: 0");
+  // header("Cache-Control: no-cache, nop-store, must-revalidate");
+  // header("Pragma: no-cache");
+  // header("Expires: 0");
 
   // Assign the root URL to a PHP constant
   // * Do not need to include the domain
